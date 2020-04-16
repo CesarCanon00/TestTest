@@ -1,0 +1,182 @@
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+
+}
+
+body{
+
+    background-color: #fff;
+    margin: 0px;
+    padding: 0px;
+    
+    
+    
+    
+   
+    
+}
+svg{
+    z-index: -1;
+    position: absolute;
+    
+}
+
+.boxp{
+background-color: rgba(3, 124, 121, 0.5);
+
+position: relative;
+width: 400px;
+height: 300px;
+border-radius: 3%;
+margin: 0 auto;
+top: 210px;
+
+
+
+}
+ 
+.boxh{
+background-color:rgba(4,174,183,0.85);
+position: absolute;
+width:380px;
+height: 280px;
+left: 10px;
+top: 10px;
+border-radius: 3%;
+
+
+}
+
+#menu{
+    
+    background-color: #04AEB7;
+   overflow: hidden;
+   width: 100%;
+   height: 70px;
+   position: fixed;
+   top: 0px;
+   bottom: 0px;
+   z-index: 1;
+   
+  
+}
+
+
+#logomenu {
+    width: 215px;
+    margin-top: 10px;
+    float: left;
+    
+}
+.container{
+    width: 98%;
+    margin:0 auto;
+
+}
+
+#menu ul{
+float :right;
+
+}
+
+#menu li{
+float:left;
+width: 105px;
+height: 40px;
+line-height: 40px;
+text-align: center;
+list-style: none;
+}
+ #menu li a{
+
+    color: white;
+    text-decoration: none;
+    display: block;
+ }
+
+
+
+ #menu li a:hover{
+background-color:rgba(255, 255, 255, 0.2);
+  
+ }
+
+ .item-d{
+    border-left: 3px solid;
+    border-color: #fff;
+    border-width:  0.1em;
+    border-radius: 1px;
+
+ }
+
+ #registrarsetext{
+ float: right;
+ margin-right: 5%;
+ margin-top: 2%;
+ text-decoration: underline;
+ color: #fff;
+ font-size: 16px;
+ font-weight: 200;
+
+ }
+
+ #formlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+ }
+#formlogin label {
+   position: relative;
+   color: #fff;
+   left: 50px;
+   
+  
+  
+
+
+}
+
+#formlogin input{
+
+    border-style: none;
+    background-color:transparent;
+    border-bottom: 1.5px solid white;
+    
+}
+
+#formlogin input:hover{
+
+    background-color:rgba(255, 255, 255, 0.2);
+}
+
+.boton {
+    background-color: #033C66;
+    border: none;
+    color: white;
+    padding: 8px 65px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 0%;
+    margin-top: 1.5%;
+    cursor: pointer;
+    border-radius: 7.14px;
+  }
+
+  .imgfondo1{
+ position: absolute;
+ left: 3%;
+ top: 3%;
+
+
+}
+
+  .imgfondo2{
+    position: absolute;
+   right: 3%;
+   bottom: 3%;
+   
+}
+ 
