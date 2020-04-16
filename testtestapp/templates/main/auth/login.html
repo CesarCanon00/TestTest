@@ -1,0 +1,30 @@
+{% extends 'style.html' %}
+{% block body %}
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <form style="margin-top: 10px;" method="POST" action="">    
+            {% csrf_token %}
+            {% for field in form %}
+            {{ field }}
+            {% endfor %}
+                    {% if form.errors %}
+                    <div style="height: 5px; margin-bottom: 20px;">
+                        <p style="width: 100%; text-align: center; font-size: small;">Usuario o contraseña no válidos.</p>
+                    </div>
+                    {% endif %}
+                <div style="height: 10px;">
+                    <button style="margin-left: 25%; margin-right: 25%; width: 50%" type="submit">Iniciar Sesión</button><br>
+                </div>
+                <div style="vertical-align: middle; height: 50px;">
+                    <p style="padding-top: 20px; width: 100%;">¿Aún no tienes una cuenta? <a style="font-weight: bold; color: black;" href="{% url 'auth:register' %}">Regístrate</a></p>
+                </div>
+            </div>
+            </form>
+        </div>
+        {% endblock body %}
+    </div>
+    </body>
+</html>
