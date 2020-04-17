@@ -10,9 +10,9 @@
         {% for field in form %}
         <div>
             <div >
-            {{ field }}
+            <label style="text-align: center; font-weight: bold;" > {{ field.label }}</label><br>
+            {{ field }}<br>
             </div>
-            <label style="text-align: center; font-weight: bold;" > {{ field.label }}</label>
             </div>
             {% if field.errors %}
             <br>

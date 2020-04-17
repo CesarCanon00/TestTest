@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import path, reverse
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LoginUserForm
+from testtestapp.models import Usuario
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as do_login
@@ -17,6 +18,10 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+
+            usuario = Usuario(form.cleaned_data['username'],form.cleaned_data['email'],0,form.cleaned_data['birthday'])
+            usuario.save()
+
             return HttpResponseRedirect(reverse('auth:login'))
 
     context = {'form':form}
@@ -26,7 +31,7 @@ def login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('main:home'))
     else:
-        form = AuthenticationForm()
+        form = LoginUserForm()
         if request.method == "POST":
             form = AuthenticationForm(data=request.POST)
             if form.is_valid():

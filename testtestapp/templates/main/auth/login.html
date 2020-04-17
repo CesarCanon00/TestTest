@@ -62,12 +62,14 @@
       <img class="imgfondo1" src="{% static 'images/signo_fondo-07.png' %}"> 
       <img class="imgfondo2"  src="{% static 'images/signo_fondo_2-07.png' %}"> 
         <div class="boxh" style="text-align: center; padding-top: 10px;">
-            <p style="font-size: 25px; margin-top:10px;"><b>Iniciar Sesión</b></p>
+            <p style="font-size: 25px; margin-top:10px; color:white"><b>Iniciar Sesión</b></p>
           <div id="formlogin"> 
             <form style="margin-top: 10px; width:100%" method="POST" action="">    
                 {% csrf_token %}
                 {% for field in form %}
-                {{ field }}
+                {{ field.label }}<br>
+                {{ field }}<br>
+                <br>
                 {% endfor %}
                         {% if form.errors %}
                         <div style="height: 5px; margin-bottom: 20px;">
@@ -75,10 +77,10 @@
                         </div>
                         {% endif %}
                     <div style="height: 10px;">
-                        <button class="btn btn-primary" style="background-color: #FFE45F; color:black; border: solid 0px; margin-left: 25%; margin-right: 25%; width: 50%; margin-top:30px" type="submit">Iniciar Sesión</button><br>
+                        <button class="btn btn-primary" style="background-color: rgb(4, 60, 101);  border: solid 0px; margin-left: 25%; margin-right: 25%; width: 50%; margin-top:5px" type="submit">Acceder</button><br>
                     </div>
                     <div style="vertical-align: middle; height: 50px;">
-                        <p style="margin-top: 75px; width: 100%;">¿Aún no tienes una cuenta? <a style="font-weight: bold; color: black;" href="{% url 'auth:register' %}">Regístrate</a></p>
+                        <p style="margin-top: 75px; width: 100%;">¿Aún no tienes una cuenta? <a style="font-weight: bold; color: rgb(4, 60, 101);" href="{% url 'auth:register' %}">Regístrate</a></p>
                     </div>
                 </div>
                 </form>
