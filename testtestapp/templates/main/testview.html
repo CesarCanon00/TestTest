@@ -1,0 +1,135 @@
+{% extends 'style.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=q|, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="{% static 'styles/vistaMiTest.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>{{test.nombre}} de {{user.username}}</title>
+
+    <header>  
+        <div  id="menu"> 
+            <div class="container"> 
+                <a href="{% url 'main:home' %}">
+                    <img src="{% static 'images/logoMenu.png' %}" alt="logo" id="logomenu" > 
+                </a>
+            </div>
+        <div style="height: 100%;">        
+            <ul style="height: 100%;"> 
+              <li style="height: 100%;" class="item-d"> <a style="display: flex; align-items: center; justify-content: center; " href="{% url 'main:logout' %}"><p style="padding-top:10px; height: 100%; display: flex; align-items: center; justify-content: center; line-height: 20px;">Cerrar sesión</p></a> </li>
+            </ul>
+         </div>
+        </div>
+
+        <div id="contenedornump">
+            <p style="font-size: 30px; margin-top: 40px; font-weight: bold; line-height: 1px;"> {{test.nombre}} </p> 
+            
+            <div style="margin-top: 30px;">
+                <h5 > Categoria:  </h5>
+                <ul class="categoria">
+                    <li style="font-weight: bold;">{{test.categoria}}</li>
+                
+                    </ul>
+            </div>
+
+             
+            <div style="margin-top: 20px; margin-bottom: 10px;">
+                <button id="botone"> <i id="icona" class="material-icons" style="color:black" >edit</i>
+                    <a href=""> 
+                        Editar </a>
+                </button>
+                
+                <button id="botonr">  
+                    <a href=""> 
+                        Realizar </a>
+                </button>
+            </div>
+            
+            
+        </div>
+
+        
+
+        </header>
+
+</head>
+<body>
+    <svg  height="100%" width="100%">
+        <line x1="5%" y1="0%" x2="5%" y2="80%" style="stroke:rgba(255,228,95);stroke-width:25px" />
+      </svg>
+      <svg height="100%" width="100%">
+        <line x1="95%" y1="50%" x2="95%" y2="100%" style="stroke:rgba(255,228,95);stroke-width:25px" />
+      </svg>
+
+    <!--Parte donde apareceria lo que esta en cada pregunta \--> 
+
+        <div id="contenedorpre" style="margin-bottom: 40px;">
+
+            <div style="margin-top: 20px;">
+                
+            </div>
+
+            <div style="margin-top: 20px; margin-bottom: 20px;">
+                <h3 style="font-weight: bold;"> Preguntas del Test </h3>
+                <h3 style="font-size: 15px;">Número de preguntas: {{preguntas.count}}</h3>
+            </div>
+
+            {% for pregunta in preguntas %}
+                <div>
+                    <h4 style="font-weight: bold;">Pregunta {{forloop.counter}}</h4>
+                </div>
+
+                <div style="margin-top: 20px;">
+
+                    <ul class="enunciado">
+                        <li style="font-weight: bold;">
+                            <button id="botonre"> 
+                                <a> <i class="material-icons" style="color:black; font-size: 20px;" >edit</i></a>
+                            </button>
+                            {{pregunta.enunciado}}
+                        </li>
+                    </ul>
+                </div>
+                <div style="margin-top: 20px;">
+                    
+                    
+                    <ul id="listopci"> 
+                        {% for listaopciones in opciones %}
+
+                            {% for opcion in listaopciones %}
+                            <li>{{opcion.enunciado}} </li>
+                            {% empty %}
+                            <div style="margin-top: 20px;">
+                                <h4 > Esta pregunta aún no tiene opciones! </h4>
+                            </div>
+                            {% endfor%}
+                        
+                        {% empty %}
+                        <div style="margin-top: 20px;">
+                            <h4 > Este test aún no tiene opciones! </h4>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                   
+                </div>
+                
+
+                {% empty %}
+            
+                <div style="margin-top: 20px;">
+                    <h4 > Este test aún no tiene preguntas! </h4>
+                </div>
+            {% endfor %}
+            </div>
+
+
+<!-- <iframe src="">
+
+</iframe> \--> 
+    
+</body>
+{% endblock body %}
+</html>

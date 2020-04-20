@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import path, reverse
 from .forms import CreateUserForm, LoginUserForm
-from testtestapp.models import Usuario
+from testtestapp.models import Usuario, Test, Pregunta, Opcion
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as do_login
@@ -50,7 +50,28 @@ def logout(request):
     return HttpResponseRedirect(reverse('auth:login'))
 
 def Home(request):
-    return render(request, "main/home.html")
+    if request.user.is_authenticated:
+        usuario = Usuario.objects.get(pk=request.user.username)
+        tests_usuario = Test.objects.filter(creador=usuario)
+        print(tests_usuario)
+        context = {'usuario':usuario,'tests':tests_usuario}
+        return render(request, "main/home.html",context)
+    else:
+        return HttpResponseRedirect(reverse('auth:login'))
+
+def testview(request,user,idtest):
+    test = Test.objects.get(pk=idtest)
+    preguntas = Pregunta.objects.filter(test=idtest)
+    opciones = []
+
+    for pregunta in preguntas:
+        opciones_pregunta = Opcion.objects.filter(pregunta=pregunta)
+        opciones.append(opciones_pregunta)
+    context = {'test':test,'preguntas':preguntas,'opciones':opciones}
+    return render(request, "main/testview.html",context)
+
+
+   
 
 
 

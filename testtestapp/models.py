@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -28,6 +29,12 @@ class Usuario(models.Model):
     test_creados = models.IntegerField(null=False,default=0)
     fecha_nacimiento = models.DateField(null=False)
 
+    def age(self):
+        today = date.today()
+        userage = today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+        print(today,self.fecha_nacimiento,userage)
+        return userage
+
     def save(self):
         super(Usuario,self).save()
 
@@ -42,6 +49,7 @@ class Test(models.Model):
     maxima_puntuacion = models.IntegerField(null=False)
     descripcion = models.CharField(max_length=4000,null=True)
     creador = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete = models.CASCADE)
 
     def save(self):
         super(Test,self).save()
@@ -95,4 +103,4 @@ class Opcion(models.Model):
         super(Pregunta,self).save()
 
     def __str__(self):
-        return "{} {}".format(self.test, self.id)
+        return "{} {}".format(self.pregunta.test, self.pregunta, self.id)
