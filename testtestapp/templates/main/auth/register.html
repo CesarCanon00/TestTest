@@ -1,31 +1,85 @@
 {% extends 'style.html' %}
+{% load static %}
 {% block body %}
 <html>
     <head>
-        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel = "stylesheet" type="text/css" href="{% static 'styles/register.css' %}">
+       <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+       <title>Test-Test: Regístrate</title>
+    
+       <style>            
+        input{
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+            margin-top: 10px;
+            text-align: center;
+            outline: none;
+            background-color: transparent;
+            width: 60%;
+        }
+        </style>
     </head>
     <body>
-        <form style="margin-bottom: 0; margin-top: 10px;" method="POST" action="">    
-        {% csrf_token %}
-        {% for field in form %}
-        <div>
-            <div >
-            <label style="text-align: center; font-weight: bold;" > {{ field.label }}</label><br>
-            {{ field }}<br>
+        <svg  height="100%" width="100%">
+            <line x1="0%" y1="100%" x2="100%" y2="0%" style="stroke:#FFE45F;stroke-width:60px" />
+          </svg>
+          <svg  height="100%" width="100%">
+            <line x1="43%" y1="0%" x2="43%" y2="100%" style="stroke:rgba(255,228,95,75%);stroke-width:40px" />
+          </svg>
+          <svg height="100%" width="100%">
+            <line x1="58%" y1="0%" x2="58%" y2="100%" style="stroke:rgba(255,228,95,75%);stroke-width:40px" />
+          </svg>
+          <svg height="100%" width="100%">  
+            <line x1="20%" y1="0%" x2="20%" y2=" 60%" style="stroke:rgb(4, 187, 197);stroke-width:20px" />
+          </svg >
+          <svg height="100%" width="100%"> 
+             <line x1="80%" y1="0%" x2="80%" y2=" 60%" style="stroke:rgb(4, 187, 197);stroke-width:20px" />
+            </svg >
+        
+            <header>  
+                <div  id="menu"> 
+                    <div class="container">
+                        <a href="{% url 'main:login' %}">
+                            <img src="{% static 'images/logoMenu.png' %}" alt="logo" id="logomenu" > 
+                        </a>
+                
             </div>
+            <div style="height: 100%;">        
+                <ul style="height: 100%;">
+                  <li class="item-d" style="height: 100%; vertical-align: middle; display: flex; align-items: center; justify-content: center;"> <a href="#"> Acerca </a> </li>
+                </ul>
+             </div>
             </div>
-            {% if field.errors %}
-            <br>
-            <span>{{ field.errors|striptags }}</span>  
-            {% endif %}
-            {% endfor %}
-                </div>
-                <div>
-                    <button type="submit" name="Create User">Registrar</button>
-                    
-                </div>
-            </div>
-            </form>
+            </header>
+              
+            <div class="boxp">
+              <img class="imgfondo1" src="{% static 'images/signo_fondo-07.png' %}"> 
+              <img class="imgfondo2"  src="{% static 'images/signo_fondo_2-07.png' %}"> 
+                <div class="boxh" style="text-align: center; padding-top: 10px;">
+                    <p style="font-size: 25px; margin-top:10px; color:white"><b>Regístrate</b></p>
+                  <div id="formregister"> 
+
+                    <form style="margin-top: 10px; width:100%" method="POST" action="">    
+                        {% csrf_token %}
+                        {% for field in form %}
+                        {{ field.label }}<br>
+                        {{ field }}<br>
+                        <br>
+                        {% endfor %}
+                                {% if form.errors %}
+                                <div style="height: 5px; margin-bottom: 20px;">
+                                    <p style="width: 100%; text-align: center; font-size: small;">Usuario o contraseña no válidos.</p>
+                                </div>
+                                {% endif %}
+                            <div style="height: 10px;">
+                                <button class="btn btn-primary" style="background-color: rgb(4, 60, 101);  border: solid 0px; margin-left: 25%; margin-right: 25%; width: 50%; margin-top:5px" type="submit">Register</button><br>
+                            </div>
+                        </div>
+                        </form>
         </div>
         {% endblock body %}
     </div>
