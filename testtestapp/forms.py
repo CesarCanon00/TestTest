@@ -1,8 +1,9 @@
 from django.forms import ModelForm
-from django.forms import TextInput, DateInput
+from django.forms import TextInput, DateInput, HiddenInput
 from django.contrib.auth.forms import UserCreationForm, UsernameField, AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
+from testtestapp.models import Test
 
 class CreateUserForm(UserCreationForm):
 
@@ -35,3 +36,24 @@ class LoginUserForm(AuthenticationForm):
                     'username':'Usuario',
                     'password':'Contraseña'  
                  }
+
+class CreateTestForm(ModelForm):
+    class Meta:
+        model = Test
+        fields = ['nombre','fecha_test','duracion','maxima_puntuacion','descripcion','categoria','creador']
+        labels = {'nombre': 'Nombre del Test',
+                'fecha_test':'Fecha (YYYY-MM-DD)',
+                'duracion':'Duración en Minutos',
+                'maxima_puntuacion':'Máxima Puntuación',
+                'descripcion':'Descripción',
+                'categoria':'Categoría',
+                'creador':'Creador'
+                }
+
+        widgets = {
+            'creador': forms.TextInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CreateTestForm, self).__init__(*args, **kwargs)
+        self.fields['creador'].required = False

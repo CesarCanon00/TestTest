@@ -10,6 +10,22 @@
    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Test-Test</title>
+
+    <style>
+        #botoni{
+        position: relative;
+        background-color: #033C66;
+        display: flex;
+        border: none;
+        padding: 5px 40px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 7.14px;
+        padding-top: 8px;
+        }
+    </style>
 </head>
 <body>
   <svg  height="100%" width="100%">
@@ -36,7 +52,7 @@
         <div id="botonagregar">
 
             <button id="botona"> <span  id="icona" class="material-icons" style="color: white;" >
-              add  </span> <a href=""> 
+              add  </span> <a href="{% url 'main:insert' 'test' %}"> 
                 Crear test </a></button>
             
         </div>
@@ -44,7 +60,7 @@
             <h3 id="titulo"> Mis tests creados</h3>
             <ul id="listatest">
                 {% for test in tests %}
-                <li> <a href="{% url 'main:testview' user.username test.id %}"> {{test.nombre}} </a></li>
+                <li style="display: flex; justify-content: center;"> <a href="{% url 'main:testview' user.username test.id %}"> {{test.nombre}} </a></li>
                 {% empty %}
                 <li style="height: 60px; display: flex; align-items: center; justify-content: center;"> No has creado ningun test!<br> Prueba creando uno con el botón de arriba.</li>
                 {% endfor %}
@@ -81,10 +97,11 @@
         </table>
 
         <button id="botone" style="justify-self: center; "> <span  id="icona" class="material-icons" style="color: white;" >
-            edit  </span> <a href=""> 
-              Editar Perfil </a></button>
-
+            description  </span> <a href="{% url 'main:results' user.username %}"> 
+              Mis Test Presentados </a></button>
      </div>
+
+     
 </body>
 {% endblock body %}
 </html>

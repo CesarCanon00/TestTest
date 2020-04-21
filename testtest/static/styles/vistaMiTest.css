@@ -153,8 +153,20 @@ text-decoration: none;
 
 }
 
+#botoni{
+    background-color: rgb(255, 80, 80);
+    border: none;
+    padding: 9px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 7.14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 #botone{
-    
     background-color: rgb(255, 215, 40);
     border: none;
     padding: 9px 30px;

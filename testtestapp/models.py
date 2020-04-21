@@ -32,7 +32,6 @@ class Usuario(models.Model):
     def age(self):
         today = date.today()
         userage = today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
-        print(today,self.fecha_nacimiento,userage)
         return userage
 
     def save(self):
@@ -42,7 +41,7 @@ class Usuario(models.Model):
         return self.nombre
 
 class Test(models.Model):
-    nombre = models.CharField(max_length=200,unique=True)
+    nombre = models.CharField(max_length=200)
     numero_preguntas = models.IntegerField(null=False,default=0)
     fecha_test = models.DateField(null=False)
     duracion = models.IntegerField(null=False)

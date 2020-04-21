@@ -37,14 +37,19 @@
 
              
             <div style="margin-top: 20px; margin-bottom: 10px;">
-                <button id="botone"> <i id="icona" class="material-icons" style="color:black" >edit</i>
-                    <a href=""> 
+                <button id="botone"> <i class="material-icons" style="color:black" >edit</i>
+                    <a href="{% url 'main:update' 'test' test.id %}"> 
                         Editar </a>
                 </button>
-                
-                <button id="botonr">  
-                    <a href=""> 
+
+                <button id="botone" style="color:white; background-color: rgb(4, 74, 124);"> <i id="icona" class="material-icons" style="color:white" >description</i>
+                    <a style="color:white;" href=""> 
                         Realizar </a>
+                </button>
+
+                <button id="botone" style="color:white; background-color: rgb(59, 94, 119);"> <i id="icona" class="material-icons" style="color:white" >delete</i>
+                    <a style="color:white;" href="{% url 'main:delete' 'test' test.id %}"> 
+                        Eliminar </a>
                 </button>
             </div>
             
