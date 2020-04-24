@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from django.forms import TextInput, DateInput, HiddenInput
+from django.forms import TextInput, DateInput, HiddenInput, Textarea
 from django.contrib.auth.forms import UserCreationForm, UsernameField, AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
-from testtestapp.models import Test
+from testtestapp.models import Test, Pregunta, Opcion
 
 class CreateUserForm(UserCreationForm):
 
@@ -50,10 +50,30 @@ class CreateTestForm(ModelForm):
                 'creador':'Creador'
                 }
 
+class CreatePreguntaForm(ModelForm):
+    class Meta:
+        model = Pregunta
+        fields = ['enunciado','puntos','test','tipo']
+        labels = {'enunciado': 'Enunciado de la Pregunta',
+                'puntos':'Puntos',
+                'test':'Test',
+                'tipo':'Tipo de Pregunta',
+                }
+
         widgets = {
-            'creador': forms.TextInput(),
+            'enunciado': forms.Textarea(),
         }
 
-    def __init__(self, *args, **kwargs):
-        super(CreateTestForm, self).__init__(*args, **kwargs)
-        self.fields['creador'].required = False
+class CreateOpcionForm(ModelForm):
+    class Meta:
+        model = Opcion
+        fields = ['enunciado','puntos','pregunta']
+        labels = {'enunciado': 'Enunciado de la Opción',
+                'puntos':'Puntos',
+                'pregunta':' Pregunta',
+                }
+
+        widgets = {
+            'enunciado': forms.Textarea(),
+        }
+

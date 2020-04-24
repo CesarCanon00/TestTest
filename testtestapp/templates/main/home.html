@@ -47,15 +47,19 @@
     </div>
     </header>
 
-    <div class="contenedor"> 
+    <div class="contenedor" style="text-align: center;"> 
 
-        <div id="botonagregar">
+        <form style="text-align: left; margin-left: 200px; margin-top: 130px; width:80%" method="GET" action="{% url 'main:busqueda' %}">    
+            {% csrf_token %}
+            <input type="text" class="form-control" placeholder="Buscar test por nombre, categoría, id o autor..." id="buscador" name="q">
+            <button class="btn btn-primary" style="background-color: rgb(4, 60, 101);  margin-bottom: 20px; border: solid 0px; margin-left: 25%; margin-right: 25%; width: 50%; margin-top:5px" type="submit">Buscar test</button><br>
+        </form> 
 
-            <button id="botona"> <span  id="icona" class="material-icons" style="color: white;" >
+
+            <button id="botona" style="margin-left: 150px;"> <span  id="icona" class="material-icons" style="color: white;" >
               add  </span> <a href="{% url 'main:insert' 'test' %}"> 
                 Crear test </a></button>
-            
-        </div>
+
         <div class="contenedorListaTes"> 
             <h3 id="titulo"> Mis tests creados</h3>
             <ul id="listatest">

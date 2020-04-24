@@ -13,4 +13,8 @@ urlpatterns = [
     path('update/<str:model>/<str:id>',views.update,name='update'),
     path('delete/<str:model>/<str:id>',views.delete,name='delete'),
     path('results/<str:id>',views.results, name='results'),
+    path('insertid/<str:model>/<str:id>',views.insertid, name='insertid'),
+    path('search',views.busqueda,name= 'busqueda'),
+    path('intest/<str:user>/<str:idtest>',views.intest,name= 'intest'),
+    path('results/<str:user>/<str:idtest>',views.results,name= 'results'),
 ]

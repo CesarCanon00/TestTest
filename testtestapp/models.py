@@ -24,7 +24,7 @@ class Categoria(models.Model):
         return self.nombre
 
 class Usuario(models.Model):
-    nombre = models.CharField(max_length=200,primary_key=True)
+    nombre = models.CharField(max_length=200,unique=True)
     correo = models.EmailField(null=False,unique=True)
     test_creados = models.IntegerField(null=False,default=0)
     fecha_nacimiento = models.DateField(null=False)
@@ -99,7 +99,7 @@ class Opcion(models.Model):
     pregunta = models.ForeignKey(Pregunta, on_delete = models.CASCADE)
 
     def save(self):
-        super(Pregunta,self).save()
+        super(Opcion,self).save()
 
     def __str__(self):
         return "{} {}".format(self.pregunta.test, self.pregunta, self.id)

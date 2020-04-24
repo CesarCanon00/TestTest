@@ -1,0 +1,43 @@
+{% extends 'style.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="{% static 'styles/miCuenta.css' %}">
+   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Test-Test</title>
+
+</head>
+<body>
+  <svg  height="100%" width="100%">
+    <line x1="-20%" y1="100%" x2="120%" y2="0%" style="stroke:#FFE45F;stroke-width:60px" />
+  </svg>
+    
+    <header>  
+    <div  id="menu"> 
+        <div class="container"> 
+            <a href="{% url 'main:home' %}">
+                <img src="{% static 'images/logoMenu.png' %}" alt="logo" id="logomenu" > 
+            </a>
+        </div>
+    <div style="height: 100%;">        
+        <ul style="height: 100%;"> 
+          <li style="height: 100%;" class="item-d"> <a style="display: flex; align-items: center; justify-content: center; " href="{% url 'main:logout' %}"><p style="padding-top:10px; height: 100%; display: flex; align-items: center; justify-content: center; line-height: 20px;">Cerrar sesión</p></a> </li>
+        </ul>
+     </div>
+    </div>
+    </header>
+
+    {% for test in tests %}
+        {{test.nombre}}
+    {% empty %}
+        No se encontró nada :(
+    {% endfor %}
+     
+</body>
+{% endblock body %}
+</html>

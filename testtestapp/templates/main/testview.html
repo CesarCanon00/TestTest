@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=q|, initial-scale=1.0">
     <link rel = "stylesheet" type="text/css" href="{% static 'styles/vistaMiTest.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>{{test.nombre}} de {{user.username}}</title>
+    <title>Test '{{test.nombre}}' de {{ creador }}</title>
 
     <header>  
         <div  id="menu"> 
@@ -26,6 +26,7 @@
 
         <div id="contenedornump">
             <p style="font-size: 30px; margin-top: 40px; font-weight: bold; line-height: 1px;"> {{test.nombre}} </p> 
+            <p style="font-size: 20px; margin-top: 40px; font-weight: bold; line-height: 1px;">(ID: {{test.id}})</p> 
             
             <div style="margin-top: 30px;">
                 <h5 > Categoria:  </h5>
@@ -35,29 +36,29 @@
                     </ul>
             </div>
 
-             
             <div style="margin-top: 20px; margin-bottom: 10px;">
-                <button id="botone"> <i class="material-icons" style="color:black" >edit</i>
-                    <a href="{% url 'main:update' 'test' test.id %}"> 
-                        Editar </a>
-                </button>
+                {% if creador == user.nombre %}
+                    <button id="botone"> <i class="material-icons" style="color:black" >edit</i>
+                        <a href="{% url 'main:update' 'test' test.id %}"> 
+                            Editar </a>
+                    </button>
+                {% endif %}
 
                 <button id="botone" style="color:white; background-color: rgb(4, 74, 124);"> <i id="icona" class="material-icons" style="color:white" >description</i>
-                    <a style="color:white;" href=""> 
+                    <a style="color:white;" href="{% url 'main:intest' user.id test.id  %}"> 
                         Realizar </a>
                 </button>
 
-                <button id="botone" style="color:white; background-color: rgb(59, 94, 119);"> <i id="icona" class="material-icons" style="color:white" >delete</i>
-                    <a style="color:white;" href="{% url 'main:delete' 'test' test.id %}"> 
-                        Eliminar </a>
-                </button>
+                {% if creador == user.nombre %}
+                    <button id="botone" style="color:white; background-color: rgb(59, 94, 119);"> <i id="icona" class="material-icons" style="color:white" >delete</i>
+                        <a style="color:white;" href="{% url 'main:delete' 'test' test.id %}"> 
+                            Eliminar </a>
+                    </button>
+                {% endif %}
             </div>
             
             
         </div>
-
-        
-
         </header>
 
 </head>
@@ -71,17 +72,25 @@
 
     <!--Parte donde apareceria lo que esta en cada pregunta \--> 
 
-        <div id="contenedorpre" style="margin-bottom: 40px;">
+        <div id="contenedorpre" style="margin-top: 30px; margin-bottom: 40px;">
 
+            {% if creador == user.nombre %}
             <div style="margin-top: 20px;">
-                
+                <button id="botone"> <i class="material-icons" style="color:black" >add</i>
+                    <a href="{% url 'main:insertid' 'pregunta' test.nombre %}"> 
+                        Añadir Preguntas </a>
+                </button>
             </div>
+            {% endif %}
 
             <div style="margin-top: 20px; margin-bottom: 20px;">
+                {% if creador == user.nombre %}
                 <h3 style="font-weight: bold;"> Preguntas del Test </h3>
+                {% endif %}
                 <h3 style="font-size: 15px;">Número de preguntas: {{preguntas.count}}</h3>
             </div>
 
+            {% if creador == user.nombre %}
             {% for pregunta in preguntas %}
                 <div>
                     <h4 style="font-weight: bold;">Pregunta {{forloop.counter}}</h4>
@@ -91,43 +100,45 @@
 
                     <ul class="enunciado">
                         <li style="font-weight: bold;">
+                            
+                            {{pregunta.enunciado}}<br>
                             <button id="botonre"> 
-                                <a> <i class="material-icons" style="color:black; font-size: 20px;" >edit</i></a>
+                                <a href="{% url 'main:update' 'pregunta' pregunta.id %}"> <i class="material-icons" style="color:black; font-size: 20px;" >edit</i></a>
                             </button>
-                            {{pregunta.enunciado}}
+                            <button id="botonre" style="background-color: rgb(59, 94, 119);"> 
+                                <a href="{% url 'main:delete' 'pregunta' pregunta.id %}"> <i class="material-icons" style="color:white; font-size: 20px;" >delete</i></a>
+                            </button>
                         </li>
                     </ul>
                 </div>
                 <div style="margin-top: 20px;">
+                    <button id="botone"> <i class="material-icons" style="color:black" >add</i>
+                        <a href="{% url 'main:insertid' 'opcion' pregunta.id %}"> 
+                            Añadir Opciones </a>
+                    </button>
                     
-                    
-                    <ul id="listopci"> 
-                        {% for listaopciones in opciones %}
-
-                            {% for opcion in listaopciones %}
-                            <li>{{opcion.enunciado}} </li>
-                            {% empty %}
-                            <div style="margin-top: 20px;">
-                                <h4 > Esta pregunta aún no tiene opciones! </h4>
-                            </div>
-                            {% endfor%}
-                        
-                        {% empty %}
-                        <div style="margin-top: 20px;">
-                            <h4 > Este test aún no tiene opciones! </h4>
-                        </div>
-                        {% endfor %}
+                    <ul id="listopci">
+                        {% for lstopciones in opciones %}
+                            {% for opcion in lstopciones %}
+                                {% if opcion.pregunta.id == pregunta.id %}
+                                    <li style="display: inline-block;">
+                                        {{opcion.enunciado}}<br>
+                                            <a href="{% url 'main:update' 'opcion' opcion.id %}" title="Editar"> <i class="material-icons" style="color:white; font-size: 20px; vertical-align: text-bottom;" >edit</i></a>
+                                            <a href="{% url 'main:delete' 'opcion' opcion.id %}" title="Borrar"> <i class="material-icons" style="color:white; font-size: 20px; vertical-align: text-bottom;" >delete</i></a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor%}
                     </ul>
-                   
                 </div>
-                
-
                 {% empty %}
             
                 <div style="margin-top: 20px;">
                     <h4 > Este test aún no tiene preguntas! </h4>
                 </div>
+                <br><br>
             {% endfor %}
+            {% endif %}
             </div>
 
 

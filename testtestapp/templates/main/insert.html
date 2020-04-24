@@ -62,7 +62,7 @@
       <img class="imgfondo1" src="{% static 'images/signo_fondo-07.png' %}"> 
       <img class="imgfondo2"  src="{% static 'images/signo_fondo_2-07.png' %}"> 
         <div class="boxh" style="text-align: center; padding-top: 10px;">
-            <p style="font-size: 25px; margin-top:10px; color:white"><b>Insertar {{model_name}}</b></p>
+            <p style="font-size: 25px; margin-top:10px; color:white"><b>Insertar {{model_name}} {% if id and model_name == 'Pregunta' %} a Test '{{id}}' {% endif %}</b></p>
           <div id="formlogin"> 
             <form style="margin-top: 10px; width:100%" method="POST" action="">    
                 {% csrf_token %}
@@ -72,6 +72,7 @@
                 <br>
                 {% endfor %}
                     {% if error %}
+                    {{form.errors}}
                         {{ error }}
                     {% endif %}
                 </div>
